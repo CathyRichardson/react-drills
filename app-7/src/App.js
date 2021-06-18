@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ToDo from './ToDo';
+import List from './List';
 
 class App extends React.Component {
   constructor() {
@@ -23,16 +24,13 @@ class App extends React.Component {
   }
 
   render() {
-    let toDoComponentList = this.state.list.map((element, index) => <ToDo key={index} task={element} />);
 
     return (
       <div className="App">
         <h1>My to-do list:</h1>
         <input value={this.state.input} placeholder="Enter new task here" onChange={this.handleChange} />
         <button onClick={this.handleClick}>Add</button>
-        {toDoComponentList}
-        {/* <NewTask />
-        <List /> */}
+        < List list={this.state.list} />
       </div>
     );
   }
