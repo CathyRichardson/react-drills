@@ -1,26 +1,38 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ToDo from './ToDo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      input: '',
+      list: [],
+    }
+  }
+
+  handleChange = (val) => { this.setState({ input: val }) }
+
+  handleClick = () => {
+    let input = this.state.input;
+    let listCopy = [...this.state.list]
+    listCopy.push(input)
+    this.setState({ list: listCopy })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>My To-do List:</h1>
+        <input placeholder="Enter new task" onChange={e => this.handleChange(e.target.value)} />
+        <button onClick={this.handleClick}>Add</button>
+        <ToDo task={this.state.list} />
+      </div>
+    );
+  }
+
 }
 
 export default App;
