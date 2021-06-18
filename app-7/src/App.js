@@ -17,7 +17,7 @@ class App extends React.Component {
 
   handleClick = (input) => {
     let copyList = [...this.state.list, input]
-    this.setState({ list: copyList, input: "" })
+    this.setState({ list: copyList})
   }
 
   render() {
