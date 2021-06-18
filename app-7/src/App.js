@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ToDo from './ToDo';
 import List from './List';
+import NewTask from './NewTask';
 
 class App extends React.Component {
   constructor() {
@@ -10,16 +11,12 @@ class App extends React.Component {
 
     this.state = {
       list: [],
-      input: '',
+
     }
   }
 
-  handleChange = (e) => {
-    this.setState({ input: e.target.value })
-  }
-
-  handleClick = () => {
-    let copyList = [...this.state.list, this.state.input]
+  handleClick = (input) => {
+    let copyList = [...this.state.list, input]
     this.setState({ list: copyList, input: "" })
   }
 
@@ -28,8 +25,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>My to-do list:</h1>
-        <input value={this.state.input} placeholder="Enter new task here" onChange={this.handleChange} />
-        <button onClick={this.handleClick}>Add</button>
+        <NewTask handleClick={this.handleClick}/>
         < List list={this.state.list} />
       </div>
     );
